@@ -1,5 +1,5 @@
 window.onload = () => {
-    push.initializeFirebase();
+    initializeFirebase();
     // push.askPermission().then(() => {
     //     push.handlePushMessage();
 
