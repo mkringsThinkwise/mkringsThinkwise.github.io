@@ -1,6 +1,3 @@
-importScripts('https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/6.1.0/firebase-messaging.js');
-
 const initializeFirebase = () => {
     firebase.initializeApp({
         // taken from your project settings --> cloud messaging
