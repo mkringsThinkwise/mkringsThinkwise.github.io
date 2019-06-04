@@ -1,6 +1,5 @@
 importScripts('https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/6.1.0/firebase-messaging.js');
-import { messagingSenderId } from './config';
 
 export const initializeFirebase = () => {
     firebase.initializeApp({

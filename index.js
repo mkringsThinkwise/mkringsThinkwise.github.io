@@ -1,5 +1,3 @@
-var push = require('./notifications/push');
-
 window.onload = () => {
     push.initializeFirebase();
     // push.askPermission().then(() => {
