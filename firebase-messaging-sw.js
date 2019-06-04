@@ -13,7 +13,9 @@ messaging.setBackgroundMessageHandler(function (payload) {
     var notificationTitle = payload.notification.title;
     var notificationOptions = {
         // actions: payload.actions,
-        actions: [{action: "yes", title: "Yes"}, {action: "no", title: "No"}],
+        actions: [
+            {action: 'like', title: 'Like'},
+            {action: 'reply', title: 'Reply'}],
         badge: payload.badge,
         body: payload.notification.body,
         data: payload.data,
