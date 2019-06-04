@@ -6,11 +6,11 @@ window.onload = () => {
                 const messaging = firebase.messaging();
                 messaging.useServiceWorker(registration);
 
-                const token = messaging.getToken().then(token => {
+                messaging.getToken().then(token => {
                     console.log('token: ', token);
-                //send token to server
+                    //send token to server
                 });
-                
+
                 handlePushMessage();
             });
         }
