@@ -1,4 +1,4 @@
-import push from './notifications/push';
+var push = require('./notifications/push');
 
 window.onload = () => {
     push.initializeFirebase();
