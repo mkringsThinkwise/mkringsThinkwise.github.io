@@ -1,1 +1,1 @@
-export const messagingSenderId = "520264413792";
+const messagingSenderId = "520264413792";
