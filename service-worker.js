@@ -33,7 +33,7 @@ messaging.setBackgroundMessageHandler(function (payload) {
 });
 
 self.addEventListener('notificationclick', function(event) {
-  self.console.log('[Service Worker] Notification click Received.');
+  self.console.log('[Service Worker] Notification click Received. \n' + event);
 
   event.notification.close();
 
