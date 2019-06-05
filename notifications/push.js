@@ -22,7 +22,7 @@ const handlePushMessage = () => {
 
         var notificationTitle = payload.notification.title;
         var notificationOptions = {
-            buttons: payload.actions,
+            actions: payload.actions,
             badge: payload.badge,
             body: payload.notification.body,
             data: payload.data,

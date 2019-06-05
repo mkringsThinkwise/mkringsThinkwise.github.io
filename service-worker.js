@@ -12,10 +12,7 @@ messaging.setBackgroundMessageHandler(function (payload) {
     // Customize notification here
     var notificationTitle = payload.notification.title;
     var notificationOptions = {
-        // actions: payload.actions,
-        buttons: [
-            {action: 'like', title: 'Like'},
-            {action: 'reply', title: 'Reply'}],
+        actions: payload.actions,
         badge: payload.badge,
         body: payload.notification.body,
         data: payload.data,
@@ -69,11 +66,11 @@ self.addEventListener('install', event => {
         console.log('Network request for ', event.request.url);
         return fetch(event.request)
   
-        // TODO 4 - Add fetched files to the cache
+        // TODO - Add fetched files to the cache
   
       }).catch(error => {
   
-        // TODO 6 - Respond with custom offline page
+        // TODO - Respond with custom offline page
   
       })
     );
