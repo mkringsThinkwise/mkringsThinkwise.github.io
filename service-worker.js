@@ -36,7 +36,8 @@ self.addEventListener('notificationclick', function(event) {
   event.notification.close();
   event.waitUntil( 
     console.log('[Service Worker] Notification click Received.')
-);
+  )
+});
 
 const filesToCache = [
     '/',
