@@ -32,13 +32,11 @@ messaging.setBackgroundMessageHandler(function (payload) {
 });
 
 self.addEventListener('notificationclick', function(event) {
-  console.log('[Service Worker] Notification click Received.');
-
-  event.notification.close();
-
-  event.waitUntil(
+  event.waitUntil( () => {
+    console.log('[Service Worker] Notification click Received.'),
     clients.openWindow('https://developers.google.com/web/')
-  );
+  });
+  event.notification.close();
 });
 
 const filesToCache = [
