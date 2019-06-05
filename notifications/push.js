@@ -38,7 +38,9 @@ const handlePushMessage = () => {
             title: payload.title,
             vibrate: payload.vibrate
         };
+
         var notification = new Notification(notificationTitle, notificationOptions);
+        
         notification.onclick = function(event) {
             event.preventDefault(); // prevent the browser from focusing the Notification's tab
             console.log(event);

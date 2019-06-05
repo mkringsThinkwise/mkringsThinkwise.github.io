@@ -29,15 +29,13 @@ messaging.setBackgroundMessageHandler(function (payload) {
         vibrate: payload.vibrate
     };
 
-    var notification = self.registration.showNotification(notificationTitle, notificationOptions);
+    return self.registration.showNotification(notificationTitle, notificationOptions);
+});
 
-    notification.onclick = function(event) {
-      event.preventDefault(); // prevent the browser from focusing the Notification's tab
-      console.log(event);
-      window.open('http://www.mozilla.org', '_blank');
-    }
-
-    return notification;
+self.addEventListener('notificationclick', function (event) {
+  event.notification.close();
+  console.log(event);
+  clients.openWindow('http://www.mozilla.org', '_blank');
 });
 
 const filesToCache = [
