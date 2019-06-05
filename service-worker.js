@@ -43,10 +43,12 @@ const filesToCache = [
     '/',
     'index.html',
     'index.js',
+    'manifest.json',
     'favicon.ico',
     'notifications/config.js',
     'notifications/push.js',
-    'icons'
+    'icons/logo.png',
+    'icons/splash.png'
 ];
 
 const staticCacheName = 'pages-cache-v1';
