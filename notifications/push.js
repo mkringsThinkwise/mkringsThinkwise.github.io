@@ -38,6 +38,6 @@ const handlePushMessage = () => {
             title: payload.title,
             vibrate: payload.vibrate
         };
-        new Notification(notificationTitle, notificationOptions);
+        var notif = new Notification(notificationTitle, notificationOptions);
     });
 };
