@@ -37,9 +37,18 @@ self.addEventListener('notificationclick', function(event) {
 
   event.notification.close();
 
-  event.waitUntil(
-    self.clients.openWindow('https://developers.google.com/web/')
-  );
+  event.waitUntil( new Promise(function(resolve, reject) {
+    if (event.action === 'yes') {
+      self.console.log('YES');
+    }
+    else if (event.action === 'reply') {
+      self.console.log('NO');
+    }
+    else {
+      self.console.log('NONE');
+    }
+    resolve();
+  }));
 });
 
 const filesToCache = [
