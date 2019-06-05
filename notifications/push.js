@@ -22,10 +22,10 @@ const handlePushMessage = () => {
 
         var notificationTitle = payload.notification.title;
         var notificationOptions = {
-            actions: payload.notification.actions,
+            //actions are only supported from the service worker
+            //actions: payload.notification.actions,
             badge: payload.notification.badge,
             body: payload.notification.body,
-            data: payload.data,
             dir: payload.notification.dir,
             lang: payload.notification.lang,
             tag: payload.notification.tag,

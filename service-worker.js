@@ -15,7 +15,6 @@ messaging.setBackgroundMessageHandler(function (payload) {
         actions: payload.notification.actions,
         badge: payload.notification.badge,
         body: payload.notification.body,
-        data: payload.data,
         dir: payload.notification.dir,
         lang: payload.notification.lang,
         tag: payload.notification.tag,
@@ -32,10 +31,10 @@ messaging.setBackgroundMessageHandler(function (payload) {
     return self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
-self.registration.addEventListener('notificationclick', function (event) {
+self.addEventListener('notificationclick', function (event) {
   event.notification.close();
   console.log(event);
-  clients.openWindow('http://www.mozilla.org', '_blank');
+  return clients.openWindow('http://www.mozilla.org', '_blank');
 });
 
 const filesToCache = [
