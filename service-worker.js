@@ -32,7 +32,7 @@ messaging.setBackgroundMessageHandler(function (payload) {
     return self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
-self.addEventListener('notificationclick', function (event) {
+self.registration.addEventListener('notificationclick', function (event) {
   event.notification.close();
   console.log(event);
   clients.openWindow('http://www.mozilla.org', '_blank');
@@ -59,24 +59,24 @@ self.addEventListener('install', event => {
   });
 
 
-  self.addEventListener('fetch', event => {
-    console.log('Fetch event for ', event.request.url);
-    event.respondWith(
-      caches.match(event.request)
-      .then(response => {
-        if (response) {
-          console.log('Found ', event.request.url, ' in cache');
-          return response;
-        }
-        console.log('Network request for ', event.request.url);
-        return fetch(event.request)
-  
-        // TODO - Add fetched files to the cache
-  
-      }).catch(error => {
-  
-        // TODO - Respond with custom offline page
-  
-      })
-    );
-  });
+self.addEventListener('fetch', event => {
+  console.log('Fetch event for ', event.request.url);
+  event.respondWith(
+    caches.match(event.request)
+    .then(response => {
+      if (response) {
+        console.log('Found ', event.request.url, ' in cache');
+        return response;
+      }
+      console.log('Network request for ', event.request.url);
+      return fetch(event.request)
+
+      // TODO - Add fetched files to the cache
+
+    }).catch(error => {
+
+      // TODO - Respond with custom offline page
+
+    })
+  );
+});
