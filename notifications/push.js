@@ -22,25 +22,25 @@ const handlePushMessage = () => {
 
         var notificationTitle = payload.notification.title;
         var notificationOptions = {
-            actions: payload.actions,
-            badge: payload.badge,
+            actions: payload.notification.actions,
+            badge: payload.notification.badge,
             body: payload.notification.body,
             data: payload.data,
-            dir: payload.dir,
-            lang: payload.lang,
-            tag: payload.tag,
-            icon: payload.icon,
-            image: payload.image,
-            renotify: payload.renotify,
-            requireInteraction: payload.requireInteraction,
-            silent: payload.silent,
-            timestamp: payload.timestamp,
-            title: payload.title,
-            vibrate: payload.vibrate
+            dir: payload.notification.dir,
+            lang: payload.notification.lang,
+            tag: payload.notification.tag,
+            icon: payload.notification.icon,
+            image: payload.notification.image,
+            renotify: payload.notification.renotify,
+            requireInteraction: payload.notification.requireInteraction,
+            silent: payload.notification.silent,
+            timestamp: payload.notification.timestamp,
+            title: payload.notification.title,
+            vibrate: payload.notification.vibrate
         };
 
         var notification = new Notification(notificationTitle, notificationOptions);
-        
+
         notification.onclick = function(event) {
             event.preventDefault(); // prevent the browser from focusing the Notification's tab
             console.log(event);
