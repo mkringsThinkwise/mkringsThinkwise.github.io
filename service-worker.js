@@ -29,8 +29,15 @@ messaging.setBackgroundMessageHandler(function (payload) {
         vibrate: payload.vibrate
     };
 
-    return self.registration.showNotification(notificationTitle,
-        notificationOptions);
+    var notification = self.registration.showNotification(notificationTitle, notificationOptions);
+
+    notification.onclick = function(event) {
+      event.preventDefault(); // prevent the browser from focusing the Notification's tab
+      console.log(event);
+      window.open('http://www.mozilla.org', '_blank');
+    }
+
+    return notification;
 });
 
 const filesToCache = [
