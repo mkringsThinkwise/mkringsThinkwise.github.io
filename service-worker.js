@@ -35,6 +35,8 @@ messaging.setBackgroundMessageHandler(function (payload) {
 self.addEventListener('notificationclick', function(event) {
   self.console.log('[Service Worker] Notification click Received. \n' + JSON.stringify(event));
 
+  self.console.log(event);
+  
   event.notification.close();
 
   event.waitUntil( new Promise(function(resolve, reject) {
