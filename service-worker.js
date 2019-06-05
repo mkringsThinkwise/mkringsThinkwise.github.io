@@ -40,8 +40,9 @@ self.addEventListener('notificationclick', function(event) {
   event.waitUntil( new Promise(function(resolve, reject) {
     if (event.action === 'yes') {
       self.console.log('YES');
+      self.console.log(JSON.stringify(event.notification));
     }
-    else if (event.action === 'reply') {
+    else if (event.action === 'no') {
       self.console.log('NO');
     }
     else {
