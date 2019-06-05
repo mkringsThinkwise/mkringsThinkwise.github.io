@@ -33,8 +33,12 @@ messaging.setBackgroundMessageHandler(function (payload) {
 
 self.addEventListener('notificationclick', function (event) {
   event.notification.close();
-  console.log(event);
-  return clients.openWindow('http://www.mozilla.org', '_blank');
+
+  event.waitUntil(function() {
+    console.log(event);
+    clients.openWindow('https://developers.google.com/web/')
+  });
+
 });
 
 const filesToCache = [
