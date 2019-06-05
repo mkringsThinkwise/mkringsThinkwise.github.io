@@ -38,6 +38,11 @@ const handlePushMessage = () => {
             title: payload.title,
             vibrate: payload.vibrate
         };
-        var notif = new Notification(notificationTitle, notificationOptions);
+        var notification = new Notification(notificationTitle, notificationOptions);
+        notification.onclick = function(event) {
+            event.preventDefault(); // prevent the browser from focusing the Notification's tab
+            console.log(event);
+            window.open('http://www.mozilla.org', '_blank');
+        }
     });
 };
