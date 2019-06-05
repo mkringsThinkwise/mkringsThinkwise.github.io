@@ -33,12 +33,10 @@ messaging.setBackgroundMessageHandler(function (payload) {
 });
 
 self.addEventListener('notificationclick', function(event) {
-  event.waitUntil( () => {
-    console.log('[Service Worker] Notification click Received.'),
-    clients.openWindow('https://developers.google.com/web/')
-  });
   event.notification.close();
-});
+  event.waitUntil( 
+    console.log('[Service Worker] Notification click Received.')
+);
 
 const filesToCache = [
     '/',
