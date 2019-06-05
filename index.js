@@ -16,4 +16,16 @@ window.onload = () => {
         }
     });
 }
-    
+
+notification.onclick = function(event) {
+    event.preventDefault(); // prevent the browser from focusing the Notification's tab
+    window.open('http://www.mozilla.org', '_blank');
+}
+
+window.addEventListener('yes', (event) => {
+    console.log("from yes: " + event);
+});
+
+window.addEventListener('yes', (event) => {
+    console.log("from no: " + event);
+});
