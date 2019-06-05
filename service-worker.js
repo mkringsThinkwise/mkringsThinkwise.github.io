@@ -35,6 +35,14 @@ self.addEventListener('notificationclick', function(event) {
   event.waitUntil( () => {
     console.log('[Service Worker] Notification click Received.'),
     clients.openWindow('https://developers.google.com/web/')
+
+    const title = 'Push Codelab';
+    const options = {
+      body: 'Yay it works.',
+      icon: 'images/icon.png',
+      badge: 'images/badge.png'
+    };
+    self.registration.showNotification(title, options);
   });
   event.notification.close();
 });
