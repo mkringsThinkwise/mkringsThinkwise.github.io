@@ -29,20 +29,25 @@ messaging.setBackgroundMessageHandler(function (payload) {
     };
 
     const notifPromise = self.registration.showNotification(notificationTitle, notificationOptions);
+    notifPromise.notification.onclick = function(event) {
+      event.preventDefault(); // prevent the browser from focusing the Notification's tab
+      console.log(event);
+      window.open('http://www.mozilla.org', '_blank');
+    }
     event.waitUntil(notifPromise);
 });
 
 self.addEventListener('notificationclick', function(event) {
-  self.console.log('[Service Worker] Notification click Received. \n' + JSON.stringify(event));
-
-  self.console.log(event);
+  self.console.log('[Service Worker] Notification click Received. \n' + event);
   
   event.notification.close();
+
+  console.log(event.notification.data);
 
   event.waitUntil( new Promise(function(resolve, reject) {
     if (event.action === 'yes') {
       self.console.log('YES');
-      self.console.log(JSON.stringify(event.data));
+      self.console.log(JSON.stringify(event.notification.data));
     }
     else if (event.action === 'no') {
       self.console.log('NO');

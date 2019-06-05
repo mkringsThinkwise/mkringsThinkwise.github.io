@@ -16,11 +16,3 @@ window.onload = () => {
         }
     });
 }
-
-window.addEventListener('yes', (event) => {
-    console.log("from yes: " + event);
-});
-
-window.addEventListener('no', (event) => {
-    console.log("from no: " + event);
-});
