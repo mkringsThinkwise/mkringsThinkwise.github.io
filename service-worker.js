@@ -31,14 +31,14 @@ messaging.setBackgroundMessageHandler(function (payload) {
     return self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
-self.addEventListener('notificationclick', function (event) {
+self.addEventListener('notificationclick', function(event) {
+  console.log('[Service Worker] Notification click Received.');
+
   event.notification.close();
 
-  event.waitUntil(function() {
-    console.log(event);
+  event.waitUntil(
     clients.openWindow('https://developers.google.com/web/')
-  });
-
+  );
 });
 
 const filesToCache = [
