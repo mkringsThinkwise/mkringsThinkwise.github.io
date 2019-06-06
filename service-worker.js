@@ -43,15 +43,15 @@ self.addEventListener('notificationclick', function(event) {
     switch(event.action) {
       case 'yes':
         self.console.log('YES');
-        self.console.log(JSON.stringify(event.notification.data));
+        self.console.log(JSON.stringify({event: event.notification}));
         break;
       case 'no':
         self.console.log('NO');
-        self.console.log(JSON.stringify(event.notification.data));
+        self.console.log(JSON.stringify({event: event.notification}));
         break;
       default:
         self.console.log('NONE');
-        self.console.log(JSON.stringify(event.notification.data));
+        self.console.log(JSON.stringify({event: event.notification}));
     }
     resolve();
   }));
@@ -59,19 +59,8 @@ self.addEventListener('notificationclick', function(event) {
 
 self.addEventListener('notificationclose', function(event) {
   event.waitUntil( new Promise(function(resolve, reject) {
-    switch(event.action) {
-      case 'yes':
-        self.console.log('YES');
-        self.console.log(JSON.stringify(event.notification.data));
-        break;
-      case 'no':
-        self.console.log('NO');
-        self.console.log(JSON.stringify(event.notification.data));
-        break;
-      default:
-        self.console.log('NONE');
-        self.console.log(JSON.stringify(event.notification.data));
-    }
+    self.console.log('CLOSE');
+    self.console.log(JSON.stringify({event: event.notification}));
     resolve();
   }));
 });
