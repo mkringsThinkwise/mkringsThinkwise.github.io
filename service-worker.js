@@ -5,6 +5,8 @@ firebase.initializeApp({
     messagingSenderId: "520264413792"
 });
 
+//This event listener needs to be defined before "const messaging = firebase.messaging();".
+//Otherwise the event listener will not be called when clicking the notificaiton itself, only when pressing the buttons.
 self.addEventListener('notificationclick', function(event) {
   self.console.log('[Service Worker] Notification click Received. \n' + event);
   
