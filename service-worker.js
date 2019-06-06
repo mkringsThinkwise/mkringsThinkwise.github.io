@@ -29,31 +29,29 @@ messaging.setBackgroundMessageHandler(function (payload) {
     };
 
     const notifPromise = self.registration.showNotification(notificationTitle, notificationOptions);
-    notifPromise.notification.onclick = function(event) {
-      event.preventDefault(); // prevent the browser from focusing the Notification's tab
-      console.log(event);
-      window.open('http://www.mozilla.org', '_blank');
-    }
     event.waitUntil(notifPromise);
 });
 
 self.addEventListener('notificationclick', function(event) {
   self.console.log('[Service Worker] Notification click Received. \n' + event);
   
-  event.notification.close();
+  event.notification.close(); // Android needs explicit close.
 
-  console.log(event.notification.data);
+  console.log(JSON.stringify({evet: event.notification}));
 
   event.waitUntil( new Promise(function(resolve, reject) {
-    if (event.action === 'yes') {
-      self.console.log('YES');
-      self.console.log(JSON.stringify(event.notification.data));
-    }
-    else if (event.action === 'no') {
-      self.console.log('NO');
-    }
-    else {
-      self.console.log('NONE');
+    switch(event.action) {
+      case 'yes':
+        self.console.log('YES');
+        self.console.log(JSON.stringify(event.notification.data));
+        break;
+      case 'no':
+        self.console.log('NO');
+        self.console.log(JSON.stringify(event.notification.data));
+        break;
+      default:
+        self.console.log('NONE');
+        self.console.log(JSON.stringify(event.notification.data));
     }
     resolve();
   }));
