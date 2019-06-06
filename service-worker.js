@@ -37,8 +37,27 @@ self.addEventListener('notificationclick', function(event) {
   
   event.notification.close(); // Android needs explicit close.
 
-  console.log(JSON.stringify({evet: event.notification}));
+  console.log({event: event.notification});
 
+  event.waitUntil( new Promise(function(resolve, reject) {
+    switch(event.action) {
+      case 'yes':
+        self.console.log('YES');
+        self.console.log(JSON.stringify(event.notification.data));
+        break;
+      case 'no':
+        self.console.log('NO');
+        self.console.log(JSON.stringify(event.notification.data));
+        break;
+      default:
+        self.console.log('NONE');
+        self.console.log(JSON.stringify(event.notification.data));
+    }
+    resolve();
+  }));
+});
+
+self.addEventListener('notificationclose', function(event) {
   event.waitUntil( new Promise(function(resolve, reject) {
     switch(event.action) {
       case 'yes':
