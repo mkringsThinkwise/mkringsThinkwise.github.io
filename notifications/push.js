@@ -1,6 +1,5 @@
 const initializeFirebase = () => {
     firebase.initializeApp({
-        // taken from your project settings --> cloud messaging
         messagingSenderId: messagingSenderId 
     });
 }

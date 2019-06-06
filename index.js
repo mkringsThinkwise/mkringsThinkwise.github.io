@@ -8,6 +8,7 @@ window.onload = () => {
 
                 messaging.getToken().then(token => {
                     console.log('token: ', token);
+                    document.getElementById('token-display').innerHTML = token;
                     //send token to server
                 });
 

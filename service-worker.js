@@ -5,74 +5,67 @@ firebase.initializeApp({
   messagingSenderId: "520264413792"
 });
 
-//This event listener needs to be defined before "const messaging = firebase.messaging();".
-//Otherwise the event listener will not be called when clicking the notificaiton itself, only when pressing the buttons.
-// self.addEventListener('notificationclick', function(event) {
-//   self.console.log('[Service Worker] Notification click Received. \n' + event);
+// This event listener needs to be defined before "const messaging = firebase.messaging();".
+// Otherwise the event listener will not be called when clicking the notificaiton itself, only when pressing the buttons.
+self.addEventListener('notificationclick', function(event) {
+  self.console.log('[Service Worker] Notification click Received. \n' + event);
 
-//   event.notification.close(); // Android needs explicit close.
+  event.notification.close(); // Android needs explicit close.
 
-//   console.log({event: event.notification});
+  console.log({event: event.notification});
 
-//   event.waitUntil( new Promise(function(resolve, reject) {
-//     switch(event.action) {
-//       case 'yes':
-//         self.console.log('YES');
-//         self.console.log(JSON.stringify({event: event.notification}));
-//         break;
-//       case 'no':
-//         self.console.log('NO');
-//         self.console.log(JSON.stringify({event: event.notification}));
-//         break;
-//       default:
-//         self.console.log('NONE');
-//         self.console.log(JSON.stringify({event: event.notification}));
-//     }
-//     resolve();
-//   }));
-// });
-
-self.addEventListener('push', function (event) {
-    event.waitUntil(new Promise(function (resolve, reject) {
-    self.console.log(JSON.stringify({ event: event.notification }));
+  event.waitUntil( new Promise(function(resolve, reject) {
+    switch(event.action) {
+      case 'yes':
+        self.console.log('YES');
+        self.console.log(JSON.stringify({event: event.notification}));
+        break;
+      case 'no':
+        self.console.log('NO');
+        self.console.log(JSON.stringify({event: event.notification}));
+        break;
+      default:
+        self.console.log('NONE');
+        self.console.log(JSON.stringify({event: event.notification}));
+    }
     resolve();
   }));
 });
 
-// const messaging = firebase.messaging();
+const messaging = firebase.messaging();
 
-// messaging.setBackgroundMessageHandler(function (payload) {
-//     console.log('[firebase-messaging-sw.js] Received background message ', payload);
-//     // Customize notification here
-//     var notificationTitle = payload.notification.title;
-//     var notificationOptions = {
-//         actions: payload.notification.actions,
-//         badge: payload.notification.badge,
-//         body: payload.notification.body,
-//         dir: payload.notification.dir,
-//         lang: payload.notification.lang,
-//         tag: payload.notification.tag,
-//         icon: payload.notification.icon,
-//         image: payload.notification.image,
-//         renotify: payload.notification.renotify,
-//         requireInteraction: payload.notification.requireInteraction,
-//         silent: payload.notification.silent,
-//         timestamp: payload.notification.timestamp,
-//         title: payload.notification.title,
-//         vibrate: payload.notification.vibrate
-//     };
+messaging.setBackgroundMessageHandler(function (payload) {
+    console.log('[firebase-messaging-sw.js] Received background message ', payload);
+    // Customize notification here
+    var notificationTitle = payload.notification.title;
+    var notificationOptions = {
+        actions: payload.notification.actions,
+        badge: payload.notification.badge,
+        body: payload.notification.body,
+        dir: payload.notification.dir,
+        lang: payload.notification.lang,
+        tag: payload.notification.tag,
+        icon: payload.notification.icon,
+        image: payload.notification.image,
+        renotify: payload.notification.renotify,
+        requireInteraction: payload.notification.requireInteraction,
+        silent: payload.notification.silent,
+        timestamp: payload.notification.timestamp,
+        title: payload.notification.title,
+        vibrate: payload.notification.vibrate
+    };
 
-//     const notifPromise = self.registration.showNotification(notificationTitle, notificationOptions);
-//     event.waitUntil(notifPromise);
-// });
+    const notifPromise = self.registration.showNotification(notificationTitle, notificationOptions);
+    event.waitUntil(notifPromise);
+});
 
-// self.addEventListener('notificationclose', function(event) {
-//   event.waitUntil( new Promise(function(resolve, reject) {
-//     self.console.log('CLOSE');
-//     self.console.log(JSON.stringify({event: event.notification}));
-//     resolve();
-//   }));
-// });
+self.addEventListener('notificationclose', function(event) {
+  event.waitUntil( new Promise(function(resolve, reject) {
+    self.console.log('CLOSE');
+    self.console.log(JSON.stringify({event: event.notification}));
+    resolve();
+  }));
+});
 
 const filesToCache = [
   '/',
