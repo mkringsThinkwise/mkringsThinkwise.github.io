@@ -5,6 +5,31 @@ firebase.initializeApp({
     messagingSenderId: "520264413792"
 });
 
+self.addEventListener('notificationclick', function(event) {
+  self.console.log('[Service Worker] Notification click Received. \n' + event);
+  
+  event.notification.close(); // Android needs explicit close.
+
+  console.log({event: event.notification});
+
+  event.waitUntil( new Promise(function(resolve, reject) {
+    switch(event.action) {
+      case 'yes':
+        self.console.log('YES');
+        self.console.log(JSON.stringify({event: event.notification}));
+        break;
+      case 'no':
+        self.console.log('NO');
+        self.console.log(JSON.stringify({event: event.notification}));
+        break;
+      default:
+        self.console.log('NONE');
+        self.console.log(JSON.stringify({event: event.notification}));
+    }
+    resolve();
+  }));
+});
+
 const messaging = firebase.messaging();
 
 messaging.setBackgroundMessageHandler(function (payload) {
@@ -30,31 +55,6 @@ messaging.setBackgroundMessageHandler(function (payload) {
 
     const notifPromise = self.registration.showNotification(notificationTitle, notificationOptions);
     event.waitUntil(notifPromise);
-});
-
-self.addEventListener('notificationclick', function(event) {
-  self.console.log('[Service Worker] Notification click Received. \n' + event);
-  
-  event.notification.close(); // Android needs explicit close.
-
-  console.log({event: event.notification});
-
-  event.waitUntil( new Promise(function(resolve, reject) {
-    switch(event.action) {
-      case 'yes':
-        self.console.log('YES');
-        self.console.log(JSON.stringify({event: event.notification}));
-        break;
-      case 'no':
-        self.console.log('NO');
-        self.console.log(JSON.stringify({event: event.notification}));
-        break;
-      default:
-        self.console.log('NONE');
-        self.console.log(JSON.stringify({event: event.notification}));
-    }
-    resolve();
-  }));
 });
 
 self.addEventListener('notificationclose', function(event) {
