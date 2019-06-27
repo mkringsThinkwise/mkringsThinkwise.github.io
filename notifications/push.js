@@ -19,23 +19,23 @@ const handlePushMessage = () => {
     messaging.onMessage(function (payload) {
         console.log('Message received. ', payload);
 
-        var notificationTitle = payload.notification.title;
+        var notificationTitle = payload.data.title;
         var notificationOptions = {
             //actions are only supported from the service worker
             //actions: payload.notification.actions,
-            badge: payload.notification.badge,
-            body: payload.notification.body,
-            dir: payload.notification.dir,
-            lang: payload.notification.lang,
-            tag: payload.notification.tag,
-            icon: payload.notification.icon,
-            image: payload.notification.image,
-            renotify: payload.notification.renotify,
-            requireInteraction: payload.notification.requireInteraction,
-            silent: payload.notification.silent,
-            timestamp: payload.notification.timestamp,
-            title: payload.notification.title,
-            vibrate: payload.notification.vibrate
+            badge: payload.data.badge,
+            body: payload.data.body,
+            dir: payload.data.dir,
+            lang: payload.data.lang,
+            tag: payload.data.tag,
+            icon: payload.data.icon,
+            image: payload.data.image,
+            renotify: payload.data.renotify,
+            requireInteraction: payload.data.requireInteraction,
+            silent: payload.data.silent,
+            timestamp: payload.data.timestamp,
+            title: payload.data.title,
+            vibrate: payload.data.vibrate
         };
 
         var notification = new Notification(notificationTitle, notificationOptions);

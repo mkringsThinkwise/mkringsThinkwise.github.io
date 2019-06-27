@@ -1,0 +1,8 @@
+{
+    "websiteName": "Push PWA",
+    "websitePushID": "web.com.thinkwisesoftware.push",
+    "allowedDomains": ["https://mkringsthinkwise.github.io/"],
+    "urlFormatString": "https://mkringsthinkwise.github.io/%@",
+    "authenticationToken": "19f8d7a6e9fb8a7f6d9330dabe",
+    "webServiceURL": "https://example.com/push"
+}
