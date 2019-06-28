@@ -20,6 +20,9 @@ window.onload = () => {
                     const messaging = firebase.messaging();
                     messaging.useServiceWorker(registration);
                     messaging.getToken().then(token => {
+
+                        document.getElementById("token-display").innerHTML += token;
+
                         console.log('token: ', token);
                         //send token to server
 
